@@ -41,7 +41,6 @@ app.use(cors());
 // So I can keep the root for just oneTransport requests
 app.get('/healthz', (req, res) => {
 
-  logger.debug('Health check received');
   return res.send('Ok');
 
 });

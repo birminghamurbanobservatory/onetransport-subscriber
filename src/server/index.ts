@@ -57,7 +57,7 @@ app.use('/', (req, res) => {
 
   logger.debug(`Method: ${req.method}`);
   logger.debug('headers', req.headers);
-  logger.debug(`X-M2M-RI header: ${req.headers['X-M2M-RI']}`);
+  logger.debug(`X-M2M-RI header: ${req.headers['x-m2m-ri']}`);
   logger.debug('body', req.body);
 
   // oneTransport asks that X-M2M-RI header is copied to the response

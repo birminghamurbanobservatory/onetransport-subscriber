@@ -1,6 +1,6 @@
 {
   "name": "onetransport-subscriber",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Subscribes to data from the oneTransport system and converts it to the Urban Observatory format.",
   "main": "index.js",
   "scripts": {

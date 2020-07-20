@@ -51,6 +51,10 @@ app.get('/healthz', (req, res) => {
 //-------------------------------------------------
 app.use('/', (req, res) => {
 
+  if (check.not.assigned(req.headers['x-m2m-ri'])) {
+    return res.send('Expecting X-M2M-RI header');
+  }
+
   logger.debug(`Method: ${req.method}`);
   logger.debug('headers', req.headers);
   logger.debug(`X-M2M-RI header: ${req.headers['X-M2M-RI']}`);

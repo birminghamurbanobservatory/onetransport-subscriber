@@ -12,7 +12,8 @@ import * as check from 'check-types';
 export const app = express();
 
 // Allow for POST requests
-app.use(bodyParser.json()); // for parsing application/json
+// oneTransport uses a weird content type header of 'application/vnd.onem2m-ntfy+json', which by default bodyParse won't handle as JSON, we need to tell it to explicitly do this here.
+app.use(bodyParser.json({type: ['application/json', 'application/vnd.onem2m-ntfy+json']}));
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 app.use(methodOverride());
 
@@ -40,9 +41,7 @@ app.use(cors());
 //-------------------------------------------------
 // So I can keep the root for just oneTransport requests
 app.get('/healthz', (req, res) => {
-
   return res.send('Ok');
-
 });
 
 
@@ -51,6 +50,7 @@ app.get('/healthz', (req, res) => {
 //-------------------------------------------------
 app.use('/', (req, res) => {
 
+  // Needed this as there still seemed to be health checks from Google even though the livenessProbe were successfully being processed by /healthz.
   if (check.not.assigned(req.headers['x-m2m-ri'])) {
     return res.send('Expecting X-M2M-RI header');
   }

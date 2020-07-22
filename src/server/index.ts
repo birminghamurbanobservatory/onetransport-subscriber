@@ -12,7 +12,7 @@ import * as check from 'check-types';
 export const app = express();
 
 // Allow for POST requests
-// oneTransport uses a weird content type header of 'application/vnd.onem2m-ntfy+json', which by default bodyParse won't handle as JSON, we need to tell it to explicitly do this here.
+// oneTransport uses a weird content type header of 'application/vnd.onem2m-ntfy+json', which by default bodyParser won't handle as JSON, we need to tell it to explicitly do this here.
 app.use(bodyParser.json({type: ['application/json', 'application/vnd.onem2m-ntfy+json']}));
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 app.use(methodOverride());
